@@ -63,12 +63,12 @@ public class Reader {
         return count;
     }
 
-    public void takeBook() {
+    public void takeBook() {        //этот метод выводит ТОЛЬКО к-во книг у этого читателя
         System.out.println("\n" + this.name + " взял " + count + " книг(и).");
     }
 
-    public void takeBook(Book... books) {
-        System.out.println(this.name + " взял  книги: ");
+    public void takeBook(Book... books) {       //только этот метод из трёх может добавить читателю книжку
+        System.out.print("\n" + this.name + " взял  книги: ");
         //из строчки, где указано сколько и каких книг у читателя увеличиваем значение на 1 для той книги, которая добавлена в этот метод
         for (Book b : books) {
             count++;        //для подсчёта кол-ва книг вообще
@@ -82,12 +82,34 @@ public class Reader {
     }
 
     public void takeBook(String str, Book... books) {   //этот метод выводит только названия тех книг, которые взял читатель
-        System.out.println(this.name + " взял  книги: ");
+        System.out.print(this.name + " взял  книги: ");
         for (Book b : books) {
             char ch = takedBooks.charAt(b.getNumBook() - 1);
             if (ch != '0') {
                 System.out.print(b.getName() + " x " + ch + "шт. ");
             }
+            System.out.println();
+        }
+    }
+
+    public void returnBook(int n){
+        if(count-n > 0) {
+            System.out.println(name + " вернул " + n + "книг(и). ");
+        } else System.out.println(name + " вернул все книги. Может даже больше, чем взял, ЛОЛ) ");
+    }
+
+    public void returnBook(Book... books){
+        System.out.print(name + " вернул книги: " );
+        for (Book b : books){
+            System.out.print(b.getName() + ", ");
+        }
+        System.out.println();
+    }
+
+    public void returnBook(String str, Book...books){
+        System.out.print(this.name + " вернул  книги: ");
+        for (Book b : books) {
+            b.getInfo();
         }
     }
 
